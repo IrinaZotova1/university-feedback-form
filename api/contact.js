@@ -23,7 +23,7 @@ function normalize(value, maxLength) {
 }
 
 function isEmail(value) {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/i.test(value);
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 }
 
 function isPhone(value) {
@@ -54,8 +54,7 @@ export default {
       return json({ error: "Некорректные данные формы." }, 400);
     }
 
-    // Скрытое поле заполняют простые спам-боты. Для них возвращаем успех,
-    // но сообщение в Telegram не отправляем.
+    // Защита от спам-ботов
     if (normalize(body.website, 200)) {
       return json({ message: "Сообщение успешно отправлено." });
     }
@@ -84,6 +83,7 @@ export default {
 
     const botToken = process.env.9260842610:AAEGUaXj60VTRbiF5fc2o-M8Adjuj6EA6Hc;
     const chatId = process.env.1132417597;
+
     if (!botToken || !chatId) {
       console.error("Telegram environment variables are missing");
       return json({ error: "Сервис отправки пока не настроен." }, 500);
@@ -122,6 +122,7 @@ export default {
       );
 
       const telegramResult = await telegramResponse.json().catch(() => null);
+
       if (!telegramResponse.ok || !telegramResult?.ok) {
         console.error("Telegram API rejected the message", telegramResult?.description);
         return json({ error: "Telegram не принял сообщение. Проверьте настройки бота." }, 502);
