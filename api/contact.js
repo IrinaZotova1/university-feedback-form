@@ -54,7 +54,6 @@ export default {
       return json({ error: "Некорректные данные формы." }, 400);
     }
 
-    // Защита от спам-ботов
     if (normalize(body.website, 200)) {
       return json({ message: "Сообщение успешно отправлено." });
     }
@@ -96,7 +95,7 @@ export default {
     }).format(new Date());
 
     const telegramText = [
-      "📩 Новое обращение с сайта",
+      "Новое обращение с сайта",
       "",
       `Имя: ${name}`,
       `Email: ${email}`,
