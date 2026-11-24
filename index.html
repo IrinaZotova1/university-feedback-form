@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Информационная система университета</title>
+    
+    <!-- Подключаем стили -->
+    <link rel="stylesheet" href="style.css">
+    
+    <!-- Скрипт для отправки формы (подключаем с defer) -->
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <main class="container">
+        <!-- Шапка -->
+        <header>
+            <h1>Информационная система университета</h1>
+            <div class="version">версия 3.0</div>
+        </header>
+
+        <!-- Информация о студенте -->
+        <section class="info">
+            <p><span>Студент:</span> <strong>Зотова Ирина Алексеевна</strong></p>
+            <p><span>Группа:</span> <strong>4-МД-5</strong></p>
+            <p><span>Версия приложения:</span> <strong>3.0</strong></p>
+        </section>
+
+        <!-- Блок с формой -->
+        <section class="feedback-section">
+            <h2>Обратная связь</h2>
+            <p class="feedback-desc">Заполните поля — сообщение будет проверено и передано администратору.</p>
+
+            <form id="contact-form" class="contact-form" novalidate>
+                <div class="field">
+                    <label for="name">Имя <span aria-hidden="true">*</span></label>
+                    <input id="name" name="name" type="text" minlength="2" maxlength="60" placeholder="Иван Иванов" required>
+                </div>
+
+                <div class="field">
+                    <label for="email">Электронная почта <span aria-hidden="true">*</span></label>
+                    <input id="email" name="email" type="email" maxlength="120" placeholder="student@example.com" required>
+                </div>
+
+                <div class="field">
+                    <label for="phone">Телефон</label>
+                    <input id="phone" name="phone" type="tel" maxlength="25" placeholder="+7 900 000-00-00" pattern="[0-9+() -]{7,25}">
+                </div>
+
+                <div class="field">
+                    <div class="field__label-row">
+                        <label for="message">Сообщение <span aria-hidden="true">*</span></label>
+                        <span id="message-counter">0 / 1500</span>
+                    </div>
+                    <textarea id="message" name="message" rows="5" minlength="10" maxlength="1500" placeholder="Опишите ваш вопрос..." required></textarea>
+                </div>
+
+                <!-- Скрытое поле для защиты от спама -->
+                <div class="honeypot" aria-hidden="true">
+                    <input id="website" name="website" type="text" tabindex="-1" autocomplete="off">
+                </div>
+
+                <label class="consent">
+                    <input id="consent" name="consent" type="checkbox" required>
+                    <span>Я согласен на обработку данных для ответа на обращение.</span>
+                </label>
+
+                <button id="submit-button" type="submit" class="btn">
+                    <span class="button-text">Отправить сообщение</span>
+                    <span class="button-loader" hidden>Отправка…</span>
+                </button>
+
+                <div id="form-status" class="form-status" role="status" aria-live="polite"></div>
+            </form>
+        </section>
+
+        <!-- Кнопка и футер -->
+        <div class="actions">
+            <a href="https://sutd.ru/studentam/lk-stud/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+                Перейти в личный кабинет <span>→</span>
+            </a>
+        </div>
+
+        <footer>
+            Опубликовано на Vercel / Firebase Hosting
+        </footer>
+    </main>
+</body>
+</html>
