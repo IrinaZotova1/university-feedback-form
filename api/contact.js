@@ -80,8 +80,8 @@ export default {
       return json({ error: "Необходимо подтвердить согласие на обработку данных." }, 400);
     }
 
-    const botToken = process.env.9260842610:AAEGUaXj60VTRbiF5fc2o-M8Adjuj6EA6Hc;
-    const chatId = process.env.1132417597;
+    const botToken = process.env.TELEGRAM_BOT_TOKEN;
+    const chatId = process.env.TELEGRAM_CHAT_ID;
 
     if (!botToken || !chatId) {
       console.error("Telegram environment variables are missing");
